@@ -1,0 +1,23 @@
+
+{% extends "tickets/layout.html" %}
+{% block title %}
+    Welcome to the Dev Pin Board
+{% endblock %}
+{% block content %}
+    
+
+<form method="POST" class="log-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Log</button>
+</form>
+
+{% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+        {% endfor %}
+        </ul>
+
+{% endif %}
+{% endblock %}
