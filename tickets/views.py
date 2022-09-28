@@ -40,6 +40,8 @@ class HomeListView(ListView):
         #print (query_results)
         return query_results
 
+
+
     
 
 def about(request):
@@ -85,6 +87,7 @@ def edit_item(request, pk):
     if request.method == "POST":
         
         if form.is_valid():
+            LogIdeas.objects.filter(id=pk).delete()
             message = form.save(commit=False)
             message.log_date = datetime.now()
             message.save()
